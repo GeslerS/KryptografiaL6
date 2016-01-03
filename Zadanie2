@@ -1,0 +1,3 @@
+
+#!/bin/bash
+sudo tcpdump host $1 -s 0 -w - -l 2>/dev/null | grep  ^Cookie

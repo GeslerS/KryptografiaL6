@@ -1,0 +1,8 @@
+tshark -i en0 -Y 'http.cookie' | grep -oai "datr=.*;”
+
+
+
+sudo tcpdump -i en0 -A -n 'tcp port 80 and (((ip[2:2] - ((ip[0]&0xf)<<2)) - ((tcp[12]&0xf0)>>2)) != 0)' >>TESTtcpdumpLONG
+cat TESTtcpdumpLONG | egrep -i 'datr=|cfduid=|Cookie|cookie’
+
+sudo tcpdump -A -s 0 port 80 | egrep -i 'Cookie|cookie|SID|datr|cfduid'
